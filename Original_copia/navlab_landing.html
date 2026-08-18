@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NavLab - Laboratorio de productos naturales y orgánicos para tu salud, nutrición y cuidado personal. Descubre el poder de la naturaleza.">
+<meta name="keywords" content="productos naturales, orgánicos, salud, nutrición, cuidado personal, NavLab">
+<meta property="og:title" content="NavLab | Laboratorio Natural & Orgánico">
+<meta property="og:description" content="Productos naturales y orgánicos para tu bienestar. Salud, nutrición y cuidado personal con el poder de la naturaleza.">
+<title>NavLab | Laboratorio Natural & Orgánico</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep: #1a4731;
+    --green-mid: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #b7e4c7;
+    --green-mist: #d8f3dc;
+    --cream: #f9f6f0;
+    --white: #ffffff;
+    --text-dark: #1c2b1e;
+    --text-mid: #4a5e4d;
+    --text-light: #7a9180;
+    --gold: #c9a84c;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(82,183,136,0.15);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(26,71,49,0.1); }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--green-mid);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--green-deep); }
+  .logo-text span { color: var(--green-light); }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-mid); font-size: .9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--green-mid); }
+
+  .nav-cta {
+    background: var(--green-mid); color: var(--white);
+    border: none; padding: 10px 22px; border-radius: 50px;
+    font-size: .88rem; font-weight: 600; cursor: pointer;
+    transition: background .25s, transform .2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--green-deep); transform: translateY(-1px); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--green-deep); border-radius: 2px; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-blob {
+    position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(183,228,199,0.18) 0%, transparent 70%);
+  }
+  .hero-content { position: relative; max-width: 640px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50px; padding: 6px 16px; margin-bottom: 28px;
+    color: var(--green-pale); font-size: .8rem; font-weight: 500; letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .hero-badge::before { content: '🌿'; font-size: 14px; }
+  #hero h1 { font-size: clamp(2.4rem,5vw,3.8rem); color: var(--white); line-height: 1.15; margin-bottom: 22px; }
+  #hero h1 em { color: var(--green-pale); font-style: normal; }
+  #hero p { font-size: 1.1rem; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 40px; max-width: 500px; }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--white); color: var(--green-deep);
+    padding: 14px 32px; border-radius: 50px; font-weight: 700;
+    text-decoration: none; font-size: .95rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+  .btn-ghost {
+    border: 2px solid rgba(255,255,255,0.5); color: var(--white);
+    padding: 14px 32px; border-radius: 50px; font-weight: 600;
+    text-decoration: none; font-size: .95rem;
+    transition: background .2s, border-color .2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 56px;
+    padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero-stat .num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); font-weight: 700; }
+  .hero-stat .label { font-size: .8rem; color: rgba(255,255,255,0.65); margin-top: 4px; letter-spacing: .03em; }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 90px 5%; }
+  .section-tag {
+    display: inline-block; background: var(--green-mist); color: var(--green-mid);
+    padding: 5px 14px; border-radius: 50px; font-size: .78rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px;
+  }
+  .section-title { font-size: clamp(1.9rem,3.5vw,2.8rem); color: var(--green-deep); margin-bottom: 16px; line-height: 1.2; }
+  .section-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 520px; line-height: 1.7; }
+  .centered { text-align: center; }
+  .centered .section-sub { margin: 0 auto; }
+
+  /* ── PRODUCTOS ── */
+  #productos { background: var(--cream); }
+  .products-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px; margin-top: 56px;
+  }
+  .product-card {
+    background: var(--white); border-radius: 20px;
+    overflow: hidden; transition: transform .3s, box-shadow .3s;
+    box-shadow: 0 2px 12px rgba(26,71,49,0.06);
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,71,49,0.12); }
+  .product-img {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    font-size: 64px; position: relative;
+  }
+  .product-img.green  { background: linear-gradient(135deg, var(--green-mist), var(--green-pale)); }
+  .product-img.sage   { background: linear-gradient(135deg, #e8f5e0, #c8e6c9); }
+  .product-img.warm   { background: linear-gradient(135deg, #fff8e1, #ffe0b2); }
+  .product-img.sky    { background: linear-gradient(135deg, #e0f7fa, #b2ebf2); }
+  .product-badge-new {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--green-mid); color: var(--white);
+    font-size: .7rem; font-weight: 700; padding: 4px 10px; border-radius: 50px;
+    text-transform: uppercase; letter-spacing: .05em;
+  }
+  .product-badge-top {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--gold); color: var(--white);
+    font-size: .7rem; font-weight: 700; padding: 4px 10px; border-radius: 50px;
+    text-transform: uppercase; letter-spacing: .05em;
+  }
+  .product-body { padding: 22px; }
+  .product-category { font-size: .75rem; color: var(--text-light); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+  .product-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--green-deep); margin-bottom: 8px; }
+  .product-desc { font-size: .88rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 16px; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-size: 1.1rem; font-weight: 700; color: var(--green-mid); }
+  .product-btn {
+    background: var(--green-mist); color: var(--green-deep);
+    border: none; padding: 8px 18px; border-radius: 50px; font-size: .82rem;
+    font-weight: 600; cursor: pointer; transition: background .2s, color .2s;
+  }
+  .product-btn:hover { background: var(--green-mid); color: var(--white); }
+  .stars { color: var(--gold); font-size: .8rem; margin-bottom: 4px; }
+
+  /* ── BENEFICIOS ── */
+  #beneficios { background: var(--white); }
+  .benefits-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 20px; }
+  .benefits-visual {
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+    border-radius: 24px; height: 480px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 20px; padding: 40px; position: relative; overflow: hidden;
+  }
+  .benefits-visual::after {
+    content: ''; position: absolute;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); bottom: -80px; right: -80px;
+  }
+  .big-leaf { font-size: 100px; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); }
+  .benefits-visual p { color: rgba(255,255,255,0.75); font-size: .95rem; text-align: center; line-height: 1.65; max-width: 280px; }
+  .benefits-visual strong { color: var(--white); font-size: 1.5rem; font-family: 'Playfair Display', serif; }
+
+  .benefits-list { display: flex; flex-direction: column; gap: 24px; }
+  .benefit-item { display: flex; gap: 18px; align-items: flex-start; }
+  .benefit-icon {
+    width: 50px; height: 50px; min-width: 50px;
+    border-radius: 14px; background: var(--green-mist);
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+  }
+  .benefit-item h4 { font-size: 1rem; color: var(--green-deep); margin-bottom: 6px; font-weight: 600; }
+  .benefit-item p { font-size: .88rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* ── TESTIMONIOS ── */
+  #testimonios { background: var(--green-deep); }
+  #testimonios .section-title { color: var(--white); }
+  #testimonios .section-tag { background: rgba(255,255,255,0.12); color: var(--green-pale); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 52px; }
+  .testimonial-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 28px;
+    transition: background .3s;
+  }
+  .testimonial-card:hover { background: rgba(255,255,255,0.11); }
+  .testi-stars { color: var(--gold); margin-bottom: 14px; font-size: .9rem; }
+  .testi-text { font-size: .92rem; color: rgba(255,255,255,0.85); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--green-light); display: flex; align-items: center;
+    justify-content: center; font-size: 18px; font-weight: 700; color: var(--white);
+    font-family: 'Playfair Display', serif;
+  }
+  .testi-name { font-weight: 600; color: var(--white); font-size: .9rem; }
+  .testi-role { font-size: .78rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  /* ── CTA ── */
+  #cta { background: var(--cream); text-align: center; }
+  .cta-box {
+    max-width: 700px; margin: 0 auto;
+    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+    border-radius: 28px; padding: 64px 48px;
+    box-shadow: 0 20px 60px rgba(26,71,49,0.2);
+    position: relative; overflow: hidden;
+  }
+  .cta-box::before {
+    content: '🌿'; position: absolute; font-size: 160px;
+    right: -20px; bottom: -30px; opacity: .07;
+  }
+  .cta-box h2 { font-size: clamp(1.8rem,3vw,2.6rem); color: var(--white); margin-bottom: 18px; }
+  .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 36px; font-size: 1rem; line-height: 1.7; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: var(--white); color: var(--green-deep);
+    padding: 14px 32px; border-radius: 50px; font-weight: 700; text-decoration: none;
+    transition: transform .2s, box-shadow .2s; font-size: .95rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.18); }
+  .btn-outline-white {
+    border: 2px solid rgba(255,255,255,0.6); color: var(--white);
+    padding: 14px 32px; border-radius: 50px; font-weight: 600; text-decoration: none;
+    transition: background .2s; font-size: .95rem;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.12); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark); color: rgba(255,255,255,0.7);
+    padding: 60px 5% 30px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .logo-text { color: var(--white); }
+  .footer-brand p { font-size: .88rem; line-height: 1.7; margin-top: 16px; max-width: 280px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 22px; }
+  .social-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+    text-decoration: none; transition: background .2s;
+  }
+  .social-icon:hover { background: var(--green-mid); }
+  .footer-col h5 { color: var(--white); font-size: .88rem; font-weight: 600; margin-bottom: 18px; text-transform: uppercase; letter-spacing: .06em; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: .87rem; transition: color .2s; }
+  .footer-col ul a:hover { color: var(--green-light); }
+  .footer-contact li { font-size: .87rem; display: flex; gap: 8px; align-items: flex-start; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 12px; }
+  .footer-bottom p { font-size: .82rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .benefits-wrap { grid-template-columns: 1fr; }
+    .benefits-visual { height: 280px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 4%; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .cta-box { padding: 44px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">
+    <div class="logo-icon">🌿</div>
+    <span class="logo-text">Nav<span>Lab</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#beneficios">Beneficios</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#cta">Contacto</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Comprar ahora</a>
+  <div class="hamburger" id="hbg" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Ciencia natural & bienestar auténtico</div>
+    <h1>La naturaleza tiene<br><em>el poder de sanar</em></h1>
+    <p>En NavLab combinamos lo mejor de la ciencia con ingredientes 100% naturales y orgánicos para crear productos que cuidan tu salud, nutren tu cuerpo y revelan tu mejor versión.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">Ver productos</a>
+      <a href="#beneficios" class="btn-ghost">Conocer más</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">100%</div>
+        <div class="label">Ingredientes naturales</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">+5K</div>
+        <div class="label">Clientes satisfechos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">12+</div>
+        <div class="label">Años de investigación</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="centered">
+    <span class="section-tag">Nuestros productos</span>
+    <h2 class="section-title">Destacados de NavLab</h2>
+    <p class="section-sub">Formulados en laboratorio con extractos orgánicos certificados, sin conservantes artificiales ni ingredientes sintéticos.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img green">
+        🫙
+        <span class="product-badge-top">Top Ventas</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Suplementos · Salud</div>
+        <div class="stars">★★★★★</div>
+        <div class="product-name">Cápsulas Moringa Plus</div>
+        <p class="product-desc">Superalimento rico en antioxidantes, proteínas y vitaminas esenciales para energizar tu día de forma natural.</p>
+        <div class="product-footer">
+          <span class="product-price">$42.000</span>
+          <button class="product-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img sage">
+        🌱
+        <span class="product-badge-new">Nuevo</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Nutrición · Proteínas</div>
+        <div class="stars">★★★★★</div>
+        <div class="product-name">Proteína Verde NavPro</div>
+        <p class="product-desc">Blend de proteína vegetal de guisante, cáñamo y arroz integral. Sin lácteos, sin gluten, sabor natural.</p>
+        <div class="product-footer">
+          <span class="product-price">$89.000</span>
+          <button class="product-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img warm">
+        🍯
+      </div>
+      <div class="product-body">
+        <div class="product-category">Cuidado Personal · Piel</div>
+        <div class="stars">★★★★☆</div>
+        <div class="product-name">Crema Facial Cúrcuma & Aloe</div>
+        <p class="product-desc">Hidratación profunda con efecto antiinflamatorio. Cúrcuma orgánica y aloe vera fresco cosechado en finca propia.</p>
+        <div class="product-footer">
+          <span class="product-price">$56.000</span>
+          <button class="product-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img sky">
+        💧
+        <span class="product-badge-new">Nuevo</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Bienestar · Detox</div>
+        <div class="stars">★★★★★</div>
+        <div class="product-name">Detox Clorofila Líquida</div>
+        <p class="product-desc">Depura tu organismo, mejora la digestión y eleva tus niveles de energía con clorofila orgánica de alta concentración.</p>
+        <div class="product-footer">
+          <span class="product-price">$38.000</span>
+          <button class="product-btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="benefits-wrap">
+    <div class="benefits-visual">
+      <div class="big-leaf">🌿</div>
+      <strong>De la tierra a tu mesa</strong>
+      <p>Todos nuestros ingredientes provienen de cultivos orgánicos certificados, libres de pesticidas y con trazabilidad completa desde el origen.</p>
+    </div>
+    <div>
+      <span class="section-tag">¿Por qué natural?</span>
+      <h2 class="section-title">Beneficios que<br>tu cuerpo agradece</h2>
+      <div class="benefits-list" style="margin-top:32px">
+        <div class="benefit-item">
+          <div class="benefit-icon">🛡️</div>
+          <div>
+            <h4>Sin químicos artificiales</h4>
+            <p>Formulaciones limpias sin conservantes sintéticos, colorantes artificiales ni ingredientes transgénicos.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🌍</div>
+          <div>
+            <h4>Sostenible y eco-responsable</h4>
+            <p>Empaques biodegradables, procesos de bajo impacto ambiental y apoyo a agricultores locales certificados.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🔬</div>
+          <div>
+            <h4>Respaldo científico</h4>
+            <p>Cada fórmula es desarrollada por nutricionistas y farmacéuticos especializados en fitoterapia y medicina funcional.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✅</div>
+          <div>
+            <h4>Certificaciones internacionales</h4>
+            <p>Certificados USDA Organic, Non-GMO Project y aval del INVIMA. Transparencia total en etiquetado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="centered">
+    <span class="section-tag">Testimonios</span>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Llevo 3 meses con la Proteína Verde NavPro y el cambio en mi energía y recuperación muscular ha sido increíble. Sin hinchazón, sin malestar digestivo. Definitivamente es mi proteína de por vida."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sara Martínez</div>
+          <div class="testi-role">Atleta de crossfit · Medellín</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Probé la Crema Facial de Cúrcuma con miedo porque tengo piel sensible. Fue la mejor decisión. En dos semanas desaparecieron las rojeces y mi piel luce más uniforme que nunca. ¡Soy fan!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">C</div>
+        <div>
+          <div class="testi-name">Camila Restrepo</div>
+          <div class="testi-role">Diseñadora · Bogotá</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Las cápsulas de Moringa Plus cambiaron mi rutina mañanera. Menos café, más energía sostenida. Como nutricionista, reviso muy bien lo que consumo y NavLab cumple con todo lo que promete."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Andrés Gómez</div>
+          <div class="testi-role">Nutricionista · Cali</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-box">
+    <h2>Empieza tu camino<br>hacia el bienestar</h2>
+    <p>Recibe un 15% de descuento en tu primera compra y accede a nuestra guía gratuita de nutrición natural. Envío gratis a todo el país.</p>
+    <div class="cta-actions">
+      <a href="#productos" class="btn-white">🛒 Comprar ahora</a>
+      <a href="mailto:hola@navlab.co" class="btn-outline-white">✉️ Contáctanos</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:4px">
+        <div class="logo-icon">🌿</div>
+        <span class="logo-text">Nav<span>Lab</span></span>
+      </a>
+      <p>Laboratorio de productos naturales y orgánicos comprometido con tu salud y el cuidado del planeta.</p>
+      <div class="footer-social">
+        <a href="#" class="social-icon">📘</a>
+        <a href="#" class="social-icon">📸</a>
+        <a href="#" class="social-icon">🐦</a>
+        <a href="#" class="social-icon">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Productos</h5>
+      <ul>
+        <li><a href="#">Suplementos</a></li>
+        <li><a href="#">Nutrición</a></li>
+        <li><a href="#">Cuidado personal</a></li>
+        <li><a href="#">Detox & Bienestar</a></li>
+        <li><a href="#">Packs y combos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#">Sobre NavLab</a></li>
+        <li><a href="#">Ciencia & Fórmulas</a></li>
+        <li><a href="#">Certificaciones</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Trabaja con nosotros</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h5>Contacto</h5>
+      <ul>
+        <li>📍 Medellín, Colombia</li>
+        <li>📞 +57 (604) 123 4567</li>
+        <li>✉️ hola@navlab.co</li>
+        <li>🕐 Lun–Vie 8am – 6pm</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 NavLab. Todos los derechos reservados.</p>
+    <p>Política de privacidad · Términos y condiciones</p>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Smooth product btn feedback
+  document.querySelectorAll('.product-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const orig = this.textContent;
+      this.textContent = '✓ Agregado';
+      this.style.background = 'var(--green-mid)';
+      this.style.color = 'var(--white)';
+      setTimeout(() => {
+        this.textContent = orig;
+        this.style.background = '';
+        this.style.color = '';
+      }, 1800);
+    });
+  });
+
+  // Intersection observer fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .benefit-item, .testimonial-card').forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+
+  function toggleMenu() {
+    alert('Menú móvil: integrar con tu framework favorito 🌿');
+  }
+</script>
+</body>
+</html>

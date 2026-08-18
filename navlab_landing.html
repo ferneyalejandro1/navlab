@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NavLab — Maquila de alimentos funcionales con formulación exclusiva, extensión de marca y gestión de registro INVIMA. Marca propia: colágenos, multivitamínicos y antiácidos con componentes naturales y orgánicos.">
+<meta name="keywords" content="maquila, alimentos funcionales, registro invima, formulación exclusiva, colágeno, multivitamínico, antiácido, NavLab">
+<meta property="og:title" content="NavLab | Maquila de Alimentos Funcionales">
+<meta property="og:description" content="Fabricamos tu marca y la nuestra: formulación exclusiva, extensión de marca, registro INVIMA y diseño de empaque. Colágenos, multivitamínicos y antiácidos.">
+<title>NavLab | Maquila de Alimentos Funcionales</title>
+<link rel="icon" type="image/png" href="_assets/favicon.png">
+<link rel="apple-touch-icon" href="_assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:  #f4f1e8;
+    --paper-2:#ebe6d8;
+    --ink:    #17140e;
+    --ink-2:  #6d6757;
+    --forest: #35654a;
+    --forest-2:#1e3a2a;
+    --sage:   #9fbd74;
+    --bronze: #8a5e28;
+    --line:   #d9d2c0;
+    --white:  #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+
+  ::selection { background: var(--sage); color: var(--forest-2); }
+
+  :focus-visible {
+    outline: 2px solid var(--bronze);
+    outline-offset: 3px;
+  }
+  .cta :focus-visible, footer :focus-visible, .plate :focus-visible {
+    outline-color: var(--sage);
+  }
+
+  .skip {
+    position: fixed; top: -100px; left: 16px; z-index: 1000;
+    background: var(--forest-2); color: var(--paper);
+    font-family: 'Space Mono', monospace; font-size: .74rem;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: 12px 20px; border-radius: 2px; text-decoration: none;
+    transition: top .2s;
+  }
+  .skip:focus { top: 12px; }
+
+  button, .btn, .ficha-btn, .hamburger { touch-action: manipulation; }
+  .btn:active, .ficha-btn:active { transform: translateY(0) scale(.98); }
+  .hamburger:active span { transform: scaleY(.8); }
+
+  .shell { max-width: 1200px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 48px); }
+
+  .mono {
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 999;
+    background: rgba(244, 241, 232, .92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 10px 40px rgba(23, 20, 14, .08); }
+  .nav-inner {
+    max-width: 1200px; margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 48px);
+    height: 68px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand-mark { width: 34px; height: 34px; }
+  .brand-name {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700; font-size: 1.05rem; letter-spacing: .12em;
+  }
+  .brand-name em { font-style: normal; color: var(--bronze); }
+  .nav-links { display: flex; gap: 30px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-2);
+    padding: 6px 0;
+    border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-links a:hover { color: var(--forest); border-color: var(--sage); }
+  .nav-links a.active { color: var(--forest); border-color: var(--forest); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: .74rem; letter-spacing: .14em; text-transform: uppercase;
+    padding: 13px 26px; border-radius: 2px;
+    text-decoration: none; cursor: pointer; border: 1px solid var(--ink);
+    background: var(--ink); color: var(--paper);
+    transition: background .2s, border-color .2s, color .2s, transform .2s;
+  }
+  .btn:hover { background: var(--forest); border-color: var(--forest); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn-light { background: var(--paper); color: var(--forest-2); border-color: var(--paper); }
+  .btn-light:hover { background: var(--sage); border-color: var(--sage); color: var(--forest-2); }
+  .btn-line { background: transparent; color: var(--paper); border-color: rgba(244, 241, 232, .55); }
+  .btn-line:hover { background: var(--paper); color: var(--forest-2); border-color: var(--paper); }
+
+  .nav-cta { padding: 10px 20px; font-size: .68rem; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: 0; padding: 8px;
+  }
+  .hamburger span { width: 24px; height: 2px; background: var(--ink); transition: transform .25s, opacity .25s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+    padding: 18px clamp(20px, 5vw, 48px) 26px;
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block; padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace; font-size: .78rem;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .mobile-menu .btn { margin-top: 18px; width: 100%; }
+
+  /* ── SECTIONS ── */
+  .section { padding: clamp(42px, 5.5vw, 68px) 0; scroll-margin-top: 68px; }
+  .sec-head { margin-bottom: clamp(44px, 6vw, 72px); }
+  .sec-code {
+    display: flex; align-items: center; gap: 18px;
+    color: var(--forest); margin-bottom: 26px;
+  }
+  .sec-code .rule { flex: 1; height: 1px; background: var(--line); }
+  .sec-title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    line-height: 1.04; letter-spacing: -.01em;
+    max-width: 20ch;
+  }
+  .sec-title em { font-style: italic; color: var(--forest); }
+  .sec-sub { color: var(--ink-2); max-width: 60ch; margin-top: 20px; font-size: 1.02rem; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; align-items: center;
+    padding: 132px 0 36px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: clamp(40px, 6vw, 88px);
+    align-items: center;
+  }
+  .eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--forest); margin-bottom: 30px;
+  }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bronze); flex: none; }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: clamp(3rem, 7.5vw, 5.4rem);
+    line-height: .98; letter-spacing: -.02em;
+  }
+  .hero h1 em { font-style: italic; color: var(--forest); }
+  .hero p.lede {
+    color: var(--ink-2); margin-top: 28px;
+    max-width: 52ch; font-size: 1.05rem;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 40px; }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 0;
+    margin-top: 52px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-meta .cell {
+    padding: 18px 30px 0 0;
+  }
+  .hero-meta .cell + .cell { padding-left: 30px; border-left: 1px solid var(--line); }
+  .hero-meta .k { font-family: 'Lora', serif; font-size: 1.5rem; color: var(--ink); }
+  .hero-meta .v { font-family: 'Space Mono', monospace; font-size: .72rem; letter-spacing: .12em; color: var(--ink-2); margin-top: 4px; }
+
+  /* Specimen plate */
+  .plate {
+    position: relative;
+    background: var(--forest-2);
+    padding: clamp(22px, 3vw, 34px);
+    border-radius: 2px;
+  }
+  .plate::before {
+    content: ''; position: absolute; inset: 8px;
+    border: 1px solid rgba(159, 189, 116, .28);
+    pointer-events: none;
+  }
+  .plate .photo {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #10100d;
+  }
+  .plate .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .plate-label {
+    margin-top: 22px;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    color: var(--sage);
+  }
+  .plate-label .name { font-family: 'Lora', serif; font-style: italic; font-size: 1.15rem; }
+  .plate .stamp { position: absolute; top: -26px; right: -14px; width: 128px; height: 128px; transform: rotate(-10deg); }
+
+  /* ── FÓRMULAS ── */
+  .formulas { background: var(--paper); }
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+  }
+  .ficha {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .ficha:hover { transform: translateY(-6px); box-shadow: 0 26px 50px rgba(23, 20, 14, .1); }
+  .ficha .photo {
+    aspect-ratio: 4 / 5;
+    background: var(--paper-2);
+    overflow: hidden;
+  }
+  .ficha .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .ficha-code {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 12px 22px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-2);
+    font-size: .72rem; letter-spacing: .12em;
+  }
+  .ficha-body { padding: 24px 22px 26px; flex: 1; display: flex; flex-direction: column; }
+  .ficha-cat { color: var(--bronze); font-size: .72rem; letter-spacing: .16em; }
+  .ficha-name {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem; font-weight: 500;
+    margin-top: 8px;
+  }
+  .ficha-desc { color: var(--ink-2); font-size: .9rem; margin-top: 12px; flex: 1; }
+  .ficha-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 26px; padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .ficha-price { font-family: 'Lora', serif; font-size: 1.25rem; }
+  .ficha-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+    background: var(--ink); color: var(--paper);
+    border: 1px solid var(--ink); padding: 10px 18px; border-radius: 2px;
+    cursor: pointer; transition: background .2s, border-color .2s, color .2s;
+  }
+  .ficha-btn:hover { background: var(--forest); border-color: var(--forest); }
+  .ficha-btn.done { background: var(--forest); border-color: var(--forest); }
+  .ficha .stamp {
+    position: absolute; top: 14px; right: 14px;
+    width: 92px; height: 92px;
+    opacity: .92;
+    transform: rotate(8deg);
+    filter: drop-shadow(0 4px 10px rgba(23,20,14,.18));
+  }
+  .ficha-note {
+    margin-top: 34px;
+    text-align: right;
+    color: var(--ink-2);
+    font-size: .7rem; letter-spacing: .12em;
+  }
+
+  /* ── PROCESO ── */
+  .proceso { background: var(--paper-2); }
+  .steps { border-top: 1px solid var(--ink); }
+  .step {
+    display: grid;
+    grid-template-columns: 90px 1fr 1fr 220px;
+    gap: 24px; align-items: baseline;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .step .n { font-family: 'Space Mono', monospace; font-size: .86rem; color: var(--bronze); }
+  .step h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.35rem; }
+  .step p { color: var(--ink-2); font-size: .9rem; max-width: 46ch; }
+  .step .m { font-family: 'Space Mono', monospace; font-size: .66rem; letter-spacing: .12em; color: var(--ink-2); text-align: right; }
+
+  /* ── REGISTRO ── */
+  .registro { padding: 0 0 clamp(42px, 5.5vw, 68px); scroll-margin-top: 0; }
+  .registro .frame {
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px);
+  }
+  .registro .shot { border: 1px solid var(--line); border-radius: 2px; overflow: hidden; background: var(--paper-2); }
+  .registro .shot img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .registro .cap {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 12px 16px; color: var(--ink-2);
+    font-size: .72rem; letter-spacing: .12em;
+  }
+
+  /* ── LABORATORIO ── */
+  .laboratorio { background: var(--paper); }
+  .lab-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(40px, 6vw, 88px); align-items: start; }
+  .benefit { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .benefit:first-of-type { padding-top: 8px; }
+  .benefit .n { font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--bronze); padding-top: 4px; }
+  .benefit h4 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.12rem; }
+  .benefit p { color: var(--ink-2); font-size: .88rem; margin-top: 6px; max-width: 52ch; }
+  .brand-doc {
+    border: 1px solid var(--line); border-radius: 2px;
+    background: var(--white); padding: clamp(20px, 3vw, 34px);
+    position: sticky; top: 96px;
+  }
+  .brand-doc .isologo { width: 100%; max-width: 360px; margin-inline: auto; }
+  .brand-doc .doc-label {
+    margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; gap: 12px;
+    color: var(--ink-2); font-size: .72rem; letter-spacing: .12em;
+  }
+
+  /* ── TESTIMONIOS ── */
+  .testimonios { background: var(--paper-2); }
+  .grid-testi { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 3vw, 40px); }
+  .quote { background: var(--paper); border: 1px solid var(--line); border-radius: 2px; padding: 30px; display: flex; flex-direction: column; }
+  .quote .stars { font-family: 'Space Mono', monospace; font-size: .72rem; color: var(--bronze); letter-spacing: .2em; }
+  .quote blockquote {
+    font-family: 'Lora', serif; font-size: 1.05rem; font-style: italic; line-height: 1.55;
+    margin: 18px 0 26px; flex: 1;
+  }
+  .quote .who { border-top: 1px solid var(--line); padding-top: 16px; display: flex; align-items: center; gap: 14px; }
+  .quote .initials {
+    width: 42px; height: 42px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--forest); color: var(--paper);
+    font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem;
+    border-radius: 2px;
+  }
+  .quote .who .mono { color: var(--ink); font-size: .68rem; letter-spacing: .1em; }
+  .quote .who small { display: block; color: var(--ink-2); font-size: .74rem; margin-top: 2px; }
+
+  /* ── CTA ── */
+  .cta { background: var(--forest-2); color: var(--paper); }
+  .cta-inner { max-width: 760px; }
+  .cta-inner .eyebrow { color: var(--sage); }
+  .cta-inner .eyebrow .dot { background: var(--sage); }
+  .cta h2 {
+    font-family: 'Lora', serif; font-weight: 500;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.02; letter-spacing: -.01em;
+  }
+  .cta h2 em { font-style: italic; color: var(--sage); }
+  .cta p { color: rgba(244, 241, 232, .78); margin-top: 22px; max-width: 54ch; }
+  .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 38px; }
+  .cta-note { margin-top: 30px; color: rgba(244, 241, 232, .55); font-size: .7rem; letter-spacing: .12em; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink); color: rgba(244, 241, 232, .72); }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: clamp(32px, 4vw, 56px);
+    padding: clamp(56px, 8vw, 88px) 0 48px;
+  }
+  .foot-brand .isologo { width: 128px; margin-bottom: 20px; }
+  .foot-brand p { font-size: .86rem; max-width: 30ch; color: rgba(244, 241, 232, .55); }
+  .foot-col h5 {
+    font-family: 'Space Mono', monospace; font-size: .7rem; letter-spacing: .16em;
+    color: var(--paper); margin-bottom: 18px; font-weight: 400;
+  }
+  .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .foot-col a { color: rgba(244, 241, 232, .55); text-decoration: none; font-size: .84rem; transition: color .2s; }
+  .foot-col a:hover { color: var(--sage); }
+  .foot-col li { font-size: .84rem; color: rgba(244, 241, 232, .55); }
+  .foot-bottom {
+    border-top: 1px solid rgba(244, 241, 232, .12);
+    padding: 24px 0 30px;
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    color: rgba(244, 241, 232, .4);
+    font-size: .66rem; letter-spacing: .12em;
+  }
+
+  /* ── MAQUILA ── */
+  .maquila { background: var(--paper); border-top: 1px solid var(--line); }
+  .maquila-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .serv { background: var(--paper); padding: 34px 28px 30px; }
+  .serv .t { font-family: 'Space Mono', monospace; font-size: .7rem; letter-spacing: .16em; color: var(--bronze); }
+  .serv h3 { font-family: 'Lora', serif; font-weight: 500; font-size: 1.18rem; margin-top: 14px; line-height: 1.25; }
+  .serv p { color: var(--ink-2); font-size: .86rem; margin-top: 10px; }
+  .maquila-foot {
+    margin-top: 26px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .maquila-foot .mono { color: var(--ink-2); font-size: .68rem; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .plate { max-width: 460px; margin-inline: auto; }
+    .grid-cards { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; }
+    .grid-testi { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; }
+    .lab-grid { grid-template-columns: 1fr; }
+    .brand-doc { position: static; }
+    .step { grid-template-columns: 60px 1fr; grid-template-rows: auto auto; }
+    .step p { grid-column: 2; }
+    .step .m { grid-column: 2; text-align: left; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .maquila-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 560px) {
+    .registro .frame { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr; gap: 28px; }
+    .maquila-grid { grid-template-columns: 1fr; }
+    .hero-meta .cell { padding: 14px 18px 0 0; }
+    .hero-meta .cell + .cell { padding-left: 18px; }
+    .nav-cta { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- NAV -->
+<nav id="navbar" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="NavLab, inicio">
+      <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <ellipse cx="32" cy="32" rx="27" ry="19" stroke="#8a5e28" stroke-width="2.6"/>
+        <path d="M32 45 C 22 40, 20 26, 36 17 C 46 25, 45 40, 32 45 Z" fill="#35654a"/>
+        <path d="M35 20 C 33 27, 31 34, 30 41" stroke="#9fbd74" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">NAV<em>LAB</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#maquila">Maquila</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#formulas">Alimentos</a></li>
+      <li><a href="#cta">Contacto</a></li>
+    </ul>
+    <a href="#cta" class="btn nav-cta">Cotizar</a>
+    <button class="hamburger" id="hbg" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mmenu" aria-label="Menú móvil">
+    <a href="#maquila">Maquila</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#formulas">Alimentos</a>
+    <a href="#cta">Contacto</a>
+    <a href="#cta" class="btn">Cotizar maquila</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main id="contenido">
+<section class="hero" id="inicio">
+  <div class="shell">
+    <div class="hero-grid">
+      <div class="reveal">
+        <p class="eyebrow mono"><span class="dot"></span>Maquila de alimentos funcionales · Marca propia · Medellín, CO</p>
+        <h1>Fabricamos<br><em>alimentos funcionales.</em></h1>
+        <p class="lede">Maquilamos tu marca con formulación exclusiva, extensión de marca y gestión de registro INVIMA. Y vendemos la nuestra: colágenos, multivitamínicos y antiácidos con componentes naturales y orgánicos. Experiencia, honestidad, consistencia y coherencia en cada producto terminado.</p>
+        <div class="hero-actions">
+          <a href="#maquila" class="btn">Cotizar maquila</a>
+          <a href="#formulas" class="btn btn-ghost">Ver alimentos funcionales</a>
+        </div>
+        <div class="hero-meta">
+          <div class="cell"><div class="k">100%</div><div class="v">ANÁLISIS POR LOTE</div></div>
+          <div class="cell"><div class="k">+5.000</div><div class="v">CLIENTES</div></div>
+          <div class="cell"><div class="k">0</div><div class="v">CONSERVANTES ARTIFICIALES</div></div>
+        </div>
+      </div>
+
+      <div class="plate reveal" style="transition-delay:.12s">
+        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="stampHero" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle cx="60" cy="60" r="32" fill="none" stroke="#8a5e28" stroke-width="1.6"/>
+          <circle cx="60" cy="60" r="28" fill="none" stroke="#8a5e28" stroke-width=".8" stroke-dasharray="2 3"/>
+          <text fill="#8a5e28" font-size="10.5" font-family="Space Mono, monospace" letter-spacing="2.6">
+            <textPath href="#stampHero" startOffset="6%">APROBADO · QC · LOTE 042 ·</textPath>
+          </text>
+          <text x="60" y="67" text-anchor="middle" fill="#8a5e28" font-family="Lora, serif" font-style="italic" font-size="18">QC</text>
+        </svg>
+        <div class="photo"><img src="PRODUCTOS/NavLab_VITATX_Front_bg.jpg" alt="Frasco de VitaTx, multivitamínico marca propia NavLab" loading="eager"></div>
+        <div class="plate-label">
+          <span class="mono">Marca propia · Lote 042</span>
+          <span class="name">VitaTx</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAQUILA -->
+<section class="section maquila" id="maquila">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="sec-code mono"><span>SEC. 01</span><span class="rule"></span><span>Maquila de alimentos funcionales</span></div>
+      <h2 class="sec-title">Tu marca, formulada<br><em>de principio a fin.</em></h2>
+      <p class="sec-sub">Fabricamos productos con formulación exclusiva y gestionamos todo el camino: extensión de marca, registro INVIMA y diseño de empaque. Experiencia, honestidad, consistencia y coherencia en cada producto terminado.</p>
+    </div>
+
+    <div class="maquila-grid reveal">
+      <div class="serv">
+        <div class="t mono">FORMULACIÓN EXCLUSIVA</div>
+        <h3>Fórmulas a tu medida</h3>
+        <p>Diseñamos la formulación personalizada de tu alimento funcional: dosis, presentación y perfil sensorial según tu mercado.</p>
+      </div>
+      <div class="serv">
+        <div class="t mono">EXTENSIÓN DE MARCA</div>
+        <h3>Amplía tu portafolio</h3>
+        <p>Suma alimentos funcionales a tu marca sin invertir en planta ni laboratorio. Tú defines el producto, nosotros lo hacemos realidad.</p>
+      </div>
+      <div class="serv">
+        <div class="t mono">REGISTRO INVIMA</div>
+        <h3>Gestión de registro</h3>
+        <p>Preparamos y gestionamos el registro sanitario de tus alimentos ante el INVIMA, de principio a fin y sin letra pequeña.</p>
+      </div>
+      <div class="serv">
+        <div class="t mono">DISEÑO DE EMPAQUE</div>
+        <h3>Coherencia visible</h3>
+        <p>Envase y etiqueta alineados al producto terminado, siempre con experiencia, honestidad, consistencia y coherencia.</p>
+      </div>
+    </div>
+
+    <div class="maquila-foot reveal">
+      <span class="mono">MAQUILA · ALIMENTOS FUNCIONALES · B2B</span>
+      <a href="#cta" class="btn">Cotizar mi proyecto</a>
+    </div>
+  </div>
+</section>
+
+<!-- FÓRMULAS -->
+<section class="section formulas" id="formulas">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="sec-code mono"><span>SEC. 02</span><span class="rule"></span><span>Alimentos funcionales · Marca propia</span></div>
+      <h2 class="sec-title">Nuestra línea:<br><em>colágenos, multivitamínicos y antiácidos.</em></h2>
+      <p class="sec-sub">Alimentos funcionales con componentes naturales y orgánicos que brindan bienestar y nutrición. Formulados, producidos y analizados en nuestro laboratorio.</p>
+    </div>
+
+    <div class="grid-cards">
+      <article class="ficha reveal">
+        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="stampA" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle cx="60" cy="60" r="32" fill="none" stroke="#8a5e28" stroke-width="1.6"/>
+          <circle cx="60" cy="60" r="28" fill="none" stroke="#8a5e28" stroke-width=".8" stroke-dasharray="2 3"/>
+          <text fill="#8a5e28" font-size="9.5" font-family="Space Mono, monospace" letter-spacing="2.2">
+            <textPath href="#stampA" startOffset="8%">APROBADO · QC · NAVLAB ·</textPath>
+          </text>
+          <text x="60" y="66" text-anchor="middle" fill="#8a5e28" font-family="Lora, serif" font-style="italic" font-size="16">QC</text>
+        </svg>
+        <div class="photo"><img src="PRODUCTOS/NavLab_VITATX_Front.jpg" alt="Frasco VitaTx — multivitamínico NavLab" loading="lazy"></div>
+        <div class="ficha-code mono"><span>NAV-VIT-040</span><span>LOTE 040</span></div>
+        <div class="ficha-body">
+          <div class="ficha-cat mono">Multivitamínicos · Alimento funcional</div>
+          <h3 class="ficha-name">VitaTx</h3>
+          <p class="ficha-desc">Multivitamínico con vitaminas, minerales y extractos vegetales de origen natural. Una toma diaria cubre lo esencial del día.</p>
+          <div class="ficha-foot">
+            <span class="ficha-price">$52.000</span>
+            <button class="ficha-btn" data-add>Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="ficha reveal" style="transition-delay:.1s">
+        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="stampB" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle cx="60" cy="60" r="32" fill="none" stroke="#8a5e28" stroke-width="1.6"/>
+          <circle cx="60" cy="60" r="28" fill="none" stroke="#8a5e28" stroke-width=".8" stroke-dasharray="2 3"/>
+          <text fill="#8a5e28" font-size="9.5" font-family="Space Mono, monospace" letter-spacing="2.2">
+            <textPath href="#stampB" startOffset="8%">APROBADO · QC · NAVLAB ·</textPath>
+          </text>
+          <text x="60" y="66" text-anchor="middle" fill="#8a5e28" font-family="Lora, serif" font-style="italic" font-size="16">QC</text>
+        </svg>
+        <div class="photo"><img src="PRODUCTOS/NavLab_COLLAGEN.jpg" alt="Frasco de colágeno hidrolizado NavLab" loading="lazy"></div>
+        <div class="ficha-code mono"><span>NAV-COL-042</span><span>LOTE 042</span></div>
+        <div class="ficha-body">
+          <div class="ficha-cat mono">Colágenos · Alimento funcional</div>
+          <h3 class="ficha-name">Colágeno NavLab</h3>
+          <p class="ficha-desc">Colágeno hidrolizado con vitamina C. Apoya la firmeza de la piel y el bienestar de uñas y articulaciones.</p>
+          <div class="ficha-foot">
+            <span class="ficha-price">$68.000</span>
+            <button class="ficha-btn" data-add>Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="ficha reveal" style="transition-delay:.2s">
+        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="stampC" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle cx="60" cy="60" r="32" fill="none" stroke="#8a5e28" stroke-width="1.6"/>
+          <circle cx="60" cy="60" r="28" fill="none" stroke="#8a5e28" stroke-width=".8" stroke-dasharray="2 3"/>
+          <text fill="#8a5e28" font-size="9.5" font-family="Space Mono, monospace" letter-spacing="2.2">
+            <textPath href="#stampC" startOffset="8%">APROBADO · QC · NAVLAB ·</textPath>
+          </text>
+          <text x="60" y="66" text-anchor="middle" fill="#8a5e28" font-family="Lora, serif" font-style="italic" font-size="16">QC</text>
+        </svg>
+        <div class="photo"><img src="PRODUCTOS/NavLAb_MENTAPLUS.jpg" alt="Cápsulas MentaPlus para la digestión, NavLab" loading="lazy"></div>
+        <div class="ficha-code mono"><span>NAV-MEN-039</span><span>LOTE 039</span></div>
+        <div class="ficha-body">
+          <div class="ficha-cat mono">Antiácidos · Alimento funcional</div>
+          <h3 class="ficha-name">MentaPlus</h3>
+          <p class="ficha-desc">Antiácido de acción prolongada con menta, anís y manzanilla. Neutraliza la acidez y acompaña la digestión después de comer.</p>
+          <div class="ficha-foot">
+            <span class="ficha-price">$45.000</span>
+            <button class="ficha-btn" data-add>Agregar</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="ficha-note mono">Línea propia NavLab · Precios de referencia.</p>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section proceso" id="proceso">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="sec-code mono"><span>SEC. 03</span><span class="rule"></span><span>Proceso de maquila</span></div>
+      <h2 class="sec-title">Cuatro etapas,<br><em>un solo</em> proveedor.</h2>
+      <p class="sec-sub">De la idea al producto terminado: cada etapa queda registrada y verificada. Tú apruebas, nosotros ejecutamos.</p>
+    </div>
+
+    <div class="steps reveal">
+      <div class="step">
+        <span class="n">01</span>
+        <h3>Brief de tu marca</h3>
+        <p>Recibimos la idea, el mercado y la meta del producto. Definimos juntos perfil, dosis y presentación.</p>
+        <span class="m">BRIEF → FÓRMULA</span>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <h3>Formulación exclusiva</h3>
+        <p>Diseñamos la fórmula a tu medida y validamos estabilidad y calidad sensorial del alimento.</p>
+        <span class="m">A MEDIDA</span>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h3>Registro INVIMA</h3>
+        <p>Preparamos el expediente técnico y gestionamos el registro sanitario de tu alimento funcional.</p>
+        <span class="m">INVIMA · ALIMENTOS</span>
+      </div>
+      <div class="step">
+        <span class="n">04</span>
+        <h3>Producción y control</h3>
+        <p>Maquilamos el lote con control físico, químico y microbiológico. Producto terminado, coherente y listo.</p>
+        <span class="m">QC · LIBERADO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRO -->
+<section class="registro">
+  <div class="shell">
+    <div class="frame">
+      <figure class="shot reveal">
+        <img src="PRODUCTOS/Gemini_Generated_Image_2kz9kn2kz9kn2kz9.jpg" alt="Registro fotográfico del taller NavLab" loading="lazy">
+        <figcaption class="cap mono"><span>REG. 01</span><span>Zona de formulación, Medellín</span></figcaption>
+      </figure>
+      <figure class="shot reveal" style="transition-delay:.12s">
+        <img src="PRODUCTOS/Gemini_Generated_Image_ixpgpxixpgpxixpg.jpg" alt="Control de calidad de lotes NavLab" loading="lazy">
+        <figcaption class="cap mono"><span>REG. 02</span><span>Control de calidad por lote</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- LABORATORIO -->
+<section class="section laboratorio" id="laboratorio">
+  <div class="shell">
+    <div class="lab-grid">
+      <div class="reveal">
+        <div class="sec-code mono"><span>SEC. 04</span><span class="rule"></span><span>El laboratorio</span></div>
+        <h2 class="sec-title">Cuatro compromisos<br>con cada <em>producto terminado.</em></h2>
+        <p class="sec-sub">Lo que garantizamos a las marcas que maquilan con nosotros, lo aplicamos a nuestra propia línea de alimentos funcionales.</p>
+
+        <div class="benefit">
+          <span class="n">01</span>
+          <div>
+            <h4>Experiencia</h4>
+            <p>Oficio en maquila y formulación de alimentos funcionales. Cada decisión nace del laboratorio, no de la improvisación.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <span class="n">02</span>
+          <div>
+            <h4>Honestidad</h4>
+            <p>Lo que dice el empaque es lo que contiene el frasco. Etiquetado real, sin promesas de letra pequeña.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <span class="n">03</span>
+          <div>
+            <h4>Consistencia</h4>
+            <p>Mismos estándares lote a lote: mismas dosis, mismo sabor, misma calidad. Para tu marca y para la nuestra.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <span class="n">04</span>
+          <div>
+            <h4>Coherencia</h4>
+            <p>Del diseño del empaque al producto terminado, todo comunica lo mismo. Sin prometer lo que no se cumple.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-doc reveal" style="transition-delay:.12s">
+        <img class="isologo" src="Isologo_NavLab.png" alt="Isologo oficial NavLab">
+        <div class="doc-label mono"><span>ISOLOGO OFICIAL · NAVLAB</span><span>2025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section testimonios" id="testimonios">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="sec-code mono"><span>SEC. 05</span><span class="rule"></span><span>Testimonios</span></div>
+      <h2 class="sec-title">Lo que cuentan<br>los <em>clientes.</em></h2>
+    </div>
+
+    <div class="grid-testi">
+      <article class="quote reveal">
+        <div class="stars">5.0 ·★★★★★</div>
+        <blockquote>Maquilamos nuestra línea de batidos con NavLab: fórmula exclusiva, registro INVIMA y empaque, todo en un solo proveedor. El producto terminado salió idéntico a la muestra.</blockquote>
+        <div class="who">
+          <span class="initials">J</span>
+          <div>
+            <div class="mono">Juliana Pérez</div>
+            <small>Directora de marca · Nutribien</small>
+          </div>
+        </div>
+      </article>
+
+      <article class="quote reveal" style="transition-delay:.1s">
+        <div class="stars">5.0 ·★★★★★</div>
+        <blockquote>La MentaPlus salvó mis comidas pesadas. Una cápsula después de almorzar y nada de acidez ni pesadez. Un antiácido natural que hace efecto directo.</blockquote>
+        <div class="who">
+          <span class="initials">C</span>
+          <div>
+            <div class="mono">Camila Restrepo</div>
+            <small>Diseñadora · Bogotá</small>
+          </div>
+        </div>
+      </article>
+
+      <article class="quote reveal" style="transition-delay:.2s">
+        <div class="stars">5.0 ·★★★★★</div>
+        <blockquote>Empecé con VitaTx para los días de más carga y mi energía se mantiene pareja toda la jornada. El empaque dice exactamente qué tiene cada cápsula. Así deberían ser todos.</blockquote>
+        <div class="who">
+          <span class="initials">S</span>
+          <div>
+            <div class="mono">Sara Martínez</div>
+            <small>Atleta de crossfit · Medellín</small>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta" id="cta">
+  <div class="shell">
+    <div class="cta-inner reveal">
+      <p class="eyebrow mono"><span class="dot"></span>Contacto</p>
+      <h2>Hablemos de tu<br><em>producto terminado.</em></h2>
+      <p>¿Maquilas tu marca o buscas bienestar? Cuéntanos tu proyecto: cotiza tu maquila o explora nuestros alimentos funcionales. Respuesta en menos de 24 horas.</p>
+      <div class="cta-actions">
+        <a href="#maquila" class="btn btn-light">Cotizar maquila</a>
+        <a href="#formulas" class="btn btn-line">Ver alimentos funcionales</a>
+      </div>
+      <p class="cta-note mono">15% EN TU PRIMERA COMPRA · ENVÍO NACIONAL DESDE $80.000 · LUN–VIE 8:00–18:00</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="shell">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="isologo" src="_assets/isologo-256.png" alt="Isologo NavLab">
+        <p>Maquila de alimentos funcionales y marca propia. Experiencia, honestidad, consistencia y coherencia en cada producto terminado.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Maquila</h5>
+        <ul>
+          <li><a href="#maquila">Formulación exclusiva</a></li>
+          <li><a href="#maquila">Extensión de marca</a></li>
+          <li><a href="#maquila">Registro INVIMA</a></li>
+          <li><a href="#maquila">Diseño de empaque</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Alimentos funcionales</h5>
+        <ul>
+          <li><a href="#formulas">Colágenos</a></li>
+          <li><a href="#formulas">Multivitamínicos</a></li>
+          <li><a href="#formulas">Antiácidos</a></li>
+          <li><a href="#formulas">Línea propia NavLab</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li>Medellín, Colombia</li>
+          <li><a href="mailto:hola@navlab.co">hola@navlab.co</a></li>
+          <li>+57 (604) 123 4567</li>
+          <li>Lun–Vie 8:00–18:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom mono">
+      <span>© 2025 NAVLAB · MEDELLÍN, CO</span>
+      <span>Política de privacidad · Términos y condiciones</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  var hbg = document.getElementById('hbg');
+  var mmenu = document.getElementById('mmenu');
+  hbg.addEventListener('click', function () {
+    var open = mmenu.classList.toggle('open');
+    hbg.classList.toggle('open', open);
+    hbg.setAttribute('aria-expanded', open);
+  });
+  mmenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mmenu.classList.remove('open');
+      hbg.classList.remove('open');
+      hbg.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.querySelectorAll('[data-add]').forEach(function (btn) {
+    var timer = null;
+    btn.addEventListener('click', function () {
+      var orig = 'Agregar';
+      this.textContent = 'Agregado ✓';
+      this.classList.add('done');
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        btn.textContent = orig;
+        btn.classList.remove('done');
+      }, 1800);
+    });
+  });
+
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  function spy() {
+    var pos = window.scrollY + 110;
+    var current = null;
+    sections.forEach(function (s) {
+      if (s.offsetTop <= pos) current = s.id;
+    });
+    navLinks.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    window.addEventListener('scroll', spy, { passive: true });
+    spy();
+  } else {
+    navLinks.forEach(function (a) { a.classList.add('active'); });
+  }
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      observer.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('in');
+    });
+  }
+</script>
+</body>
+</html>
