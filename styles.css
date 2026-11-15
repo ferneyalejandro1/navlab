@@ -36,21 +36,30 @@ h1, h2, h3, h4 { font-family: var(--f-heading); color: var(--c-dark); line-heigh
 .btn-secondary:hover { background: var(--c-white); color: var(--c-dark); }
 
 .top-bar { background: var(--c-primary-hover); color: var(--c-white); font-size: 0.78rem; padding: 0.55rem 0; border-bottom: 2px solid var(--c-accent); }
-.top-bar-content { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.top-bar-text { letter-spacing: 0.02em; }
-.top-bar-links { display: flex; align-items: center; gap: 0.5rem; }
-.top-bar-links a { padding: 0.2rem 0.7rem; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; color: var(--c-white); font-size: 0.74rem; transition: var(--transition); }
-.top-bar-links a:hover, .top-bar-links a:focus-visible { background: var(--c-white); color: var(--c-primary-hover); }
+.top-bar-content { width: 100%; max-width: none; overflow: hidden; }
+.top-bar-track { display: flex; width: max-content; animation: top-bar-scroll 28s linear infinite; }
+.top-bar-track:hover { animation-play-state: paused; }
+.top-bar-text { display: block; flex: 0 0 100vw; padding: 0 1rem; text-align: center; white-space: nowrap; letter-spacing: 0.02em; }
+@keyframes top-bar-scroll { to { transform: translateX(-50%); } }
+.footer-social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.social-link { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.65rem 1rem; border-radius: 999px; color: var(--c-white); font-size: 0.9rem; font-weight: 600; transition: var(--transition); }
+.social-link:hover, .social-link:focus-visible { color: var(--c-white); transform: translateY(-2px); }
+.social-link svg { width: 1.15rem; height: 1.15rem; fill: currentColor; }
+.social-facebook { background: #1877f2; }
+.social-facebook:hover, .social-facebook:focus-visible { background: #0c63d4; }
+.social-instagram { background: linear-gradient(45deg, #feda75 0%, #fa7e1e 25%, #d62976 55%, #962fbf 78%, #4f5bd5 100%); }
+.social-instagram svg { fill: none; stroke: currentColor; stroke-width: 2; }
+.social-instagram .instagram-dot { fill: currentColor; stroke: none; }
 
 .site-header { position: sticky; top: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #eaeaea; transition: var(--transition); padding: 1rem 0; }
 .header-inner { display: flex; justify-content: space-between; align-items: center; }
-.logo { display: inline-flex; align-items: center; gap: 0.6rem; text-align: right; font-family: var(--f-heading); line-height: 1.05; }
-.logo-img { width: 12rem; height: auto; }
+.logo { display: inline-flex; align-items: center; gap: 0.2rem; text-align: right; font-family: var(--f-heading); line-height: 1.05; }
+.logo-img { width: 20Rem; height: auto; }
 .logo-mark { display: block; width: 3.2rem; height: 4.725rem; flex: none; }
 .logo-copy { display: block; }
 .logo-name { display: block; color: var(--c-primary); font-size: 3rem; font-weight: 700; }
 .logo-subtitle { display: block; color: var(--c-accent); font-size: 1.5rem; font-style: italic; text-align: right; }
-.nav-links { display: flex; gap: 2rem; list-style: none; font-weight: 500; font-size: 0.95rem; }
+.nav-links { display: flex; gap: 2rem; list-style: none; font-weight: 500; font-size: 1.14rem; }
 .nav-links a:hover { color: var(--c-primary); }
 
 .hero { position: relative; height: 85vh; display: flex; align-items: center; overflow: hidden; }
@@ -69,13 +78,14 @@ h1, h2, h3, h4 { font-family: var(--f-heading); color: var(--c-dark); line-heigh
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem; }
 
-.product-card { background: var(--c-white); border-radius: 8px; overflow: hidden; transition: var(--transition); border: 1px solid #eaeaea; }
+.product-card { display: flex; flex-direction: column; background: var(--c-white); border-radius: 8px; overflow: hidden; transition: var(--transition); border: 1px solid #eaeaea; }
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
 .card-image img { width: 100%; aspect-ratio: 4/3; object-fit: cover; transition: transform 0.5s ease; }
 .product-card:hover .card-image img { transform: scale(1.03); }
-.card-body { padding: 1.5rem; }
+.card-body { display: flex; flex: 1; flex-direction: column; padding: 1.5rem; }
 .card-body h3 { font-size: 1.25rem; font-family: var(--f-body); }
-.card-desc { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+.card-desc { min-height: 4.5rem; font-size: 0.9rem; line-height: 1.5rem; color: #666; margin-bottom: 1rem; }
+.card-body .btn { margin-top: auto; }
 .link-arrow { display: inline-flex; align-items: center; color: var(--c-primary); font-weight: 600; font-size: 0.9rem;}
 .link-arrow span { transition: transform 0.3s ease; margin-left: 5px; }
 .link-arrow:hover span { transform: translateX(5px); }
@@ -102,10 +112,7 @@ h1, h2, h3, h4 { font-family: var(--f-heading); color: var(--c-dark); line-heigh
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .top-bar { padding: 0.45rem 0; }
-    .top-bar-content { flex-direction: column; justify-content: center; gap: 0.35rem; text-align: center; }
     .top-bar-text { font-size: 0.68rem; }
-    .top-bar-links { gap: 0.35rem; }
-    .top-bar-links a { padding: 0.1rem 0.55rem; font-size: 0.68rem; }
     .hero-title { font-size: 2.2rem; }
     .btn-group { flex-direction: column; }
     .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
@@ -115,4 +122,10 @@ h1, h2, h3, h4 { font-family: var(--f-heading); color: var(--c-dark); line-heigh
     .trust-bar .grid-4 { gap: 1rem; }
     .trust-item { text-align: center; padding: 1rem; border-bottom: 1px solid #ddd; }
     .trust-item:last-child { border: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .top-bar-track { width: 100%; justify-content: center; animation: none; }
+    .top-bar-text { flex-basis: auto; }
+    .top-bar-text[aria-hidden="true"] { display: none; }
 }
