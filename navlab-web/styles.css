@@ -2,9 +2,9 @@
     --c-white: #ffffff;
     --c-surface: #F3F4F6;
     --c-dark: #1A1C20;
-    --c-primary: #3B6B44; 
+    --c-primary: #3B6B44;
     --c-primary-hover: #2F5636;
-    --c-accent: #B59A5D; 
+    --c-accent: #B59A5D;
     --c-text: #374151;
     --f-heading: 'Playfair Display', serif;
     --f-body: 'Inter', sans-serif;
@@ -50,6 +50,14 @@ h1, h2, h3, h4 { font-family: var(--f-heading); color: var(--c-dark); line-heigh
 .social-instagram { background: linear-gradient(45deg, #feda75 0%, #fa7e1e 25%, #d62976 55%, #962fbf 78%, #4f5bd5 100%); }
 .social-instagram svg { fill: none; stroke: currentColor; stroke-width: 2; }
 .social-instagram .instagram-dot { fill: currentColor; stroke: none; }
+.site-footer { padding: 4rem 0 2rem; text-align: center; }
+.site-footer h2 { color: var(--c-white); font-family: var(--f-heading); }
+.footer-tagline { color: #aaa; }
+.footer-contact { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 1.5rem; color: #aaa; font-size: 0.95rem; font-style: normal; }
+.footer-contact a, .footer-copyright a { color: var(--c-accent); }
+.footer-contact a:hover, .footer-copyright a:hover { color: var(--c-white); }
+.footer-copyright { margin-top: 2rem; font-size: 0.8rem; color: #666; }
+.footer-copyright a { font-family: var(--f-body); font-weight: 700; color: var(--c-white); }
 
 .site-header { position: sticky; top: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid #eaeaea; transition: var(--transition); padding: 1rem 0; }
 .header-inner { display: flex; justify-content: space-between; align-items: center; }
